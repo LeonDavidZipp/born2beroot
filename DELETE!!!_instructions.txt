@@ -1,0 +1,58 @@
+hostname: lzipp42
+username: lzipp
+password of ALL users: Passwort12
+---------------------------------------------
+
+password policy: -10 characters
+				 -1 number
+				 -1 upper case
+				 -1 lower case
+				 -no 3 consecutive same chars
+				 -expire every 30 days
+				 -2 days before modification allowed
+				 -user has to receive a warning message 7 days before their password expires.
+
+set password policy:
+	sudo nano /etc/login.defs
+	->PASS_MAX_DAYS 30
+	->PASS_MIN_DAYS 2
+	->PASS_WARN_AGE 7
+---------------------------------------------
+
+show ssh is there:
+	systemctl status sshd
+
+Changing default port (22) to 4242:
+	sudo nano /etc/ssh/sshd_config
+---------------------------------------------
+
+connect to virtual machine in terminal:
+	ssh lzipp@127.0.0.1 -p 4242
+exit connection in terminal:
+	exit
+---------------------------------------------
+
+deleting a rule:
+	first check which number:
+		sudo ufw status numbered
+	then delete:
+		sudo ufw delete number_to_delete
+---------------------------------------------
+
+create a group:
+	sudo groupadd groupname
+check if group created (shows all groups):
+	getent group
+
+create user:
+	sudo adduser new_username
+check for all local users:
+	cut -d: -f1 /etc/passwd
+add to a group:
+	sudo usermod -aG groupname username
+check if user is in group
+	getent groupname username
+check which groups user belongs to:
+	groups
+check which password rules do apply for user:
+	chage -l your_new_username
