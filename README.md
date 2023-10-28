@@ -47,7 +47,8 @@ Change password of current user
 passwd
 ```
 , then press enter.
-Change password of any user (be in su - mode!)
+Change password of any user \
+(be in su - mode!)
 ```
 passwd username
 ```
@@ -87,7 +88,8 @@ Delete user:
 ```
 sudo userdel username
 ```
-Check if succesful (simply displays all existing users)
+Check if succesful \
+(simply displays all existing users)
 ```
 cut -d: -f1 /etc/passwd
 ```
@@ -141,4 +143,4 @@ $'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")"
 $'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
 ```
 Explanation:
-* wall (write all) is used by system administrators to send important messages to all users who are currently logged into the system.
+- wall (write all) is used by system administrators to send important messages to all users who are currently logged into the system.
