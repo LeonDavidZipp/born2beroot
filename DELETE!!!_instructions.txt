@@ -1,6 +1,7 @@
 hostname: lzipp42
 username: lzipp
-password of ALL users: Passwort12
+password of ALL users except evaluator: Passwort12
+password of evaluator (dictionary protected): Pasw123,.456
 ---------------------------------------------
 
 password policy: -10 characters
@@ -43,16 +44,20 @@ create a group:
 	sudo groupadd groupname
 check if group created (shows all groups):
 	getent group
+delete group:
+	groupdel groupname
 
 create user:
 	sudo adduser new_username
+delete user:
+
 check for all local users:
 	cut -d: -f1 /etc/passwd
 add to a group:
 	sudo usermod -aG groupname username
 check if user is in group
-	getent groupname username
+	getent group username
 check which groups user belongs to:
-	groups
+	groups username
 check which password rules do apply for user:
-	chage -l your_new_username
+	chage -l username
