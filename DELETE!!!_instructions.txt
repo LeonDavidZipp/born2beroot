@@ -27,6 +27,10 @@ Changing default port (22) to 4242:
 	sudo nano /etc/ssh/sshd_config
 ---------------------------------------------
 
+show partitioning of disk:
+	lsblk
+---------------------------------------------
+
 connect to virtual machine in terminal:
 	ssh lzipp@127.0.0.1 -p 4242
 exit connection in terminal:
@@ -46,10 +50,12 @@ check if group created (shows all groups):
 	getent group
 delete group:
 	groupdel groupname
+---------------------------------------------
 
 create user:
 	sudo adduser new_username
 delete user:
+	sudo userdel username0
 
 check for all local users:
 	cut -d: -f1 /etc/passwd
@@ -61,3 +67,22 @@ check which groups user belongs to:
 	groups username
 check which password rules do apply for user:
 	chage -l username
+---------------------------------------------
+
+check hostname:
+	hostnamectl
+change hostname:
+	hostnamectl set-hostname new_hostname
+change hostfile:
+	go to
+		sudo nano /etc/hosts
+	then change this:
+		127.0.0.1       localhost
+		-->127.0.0.1       new_hostname<--
+reboot after changes are implemented:
+	sudo reboot
+
+---------------------------------------------
+
+creating a monitorin.sh script
+ ->open in bash using cat> monitoring.sh
