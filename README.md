@@ -119,7 +119,8 @@ getent group
 ```
 ### Firewall UFW
 ### monitoring.sh
-Displays the given contents every 10 minutes. \Create the file
+Displays the given contents every 10 minutes. \
+Create the file
 ```
 cat> monitoring.sh
 ```
