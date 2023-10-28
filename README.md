@@ -2,6 +2,14 @@
 born2beroot project of the 42 core curriculum.
 
 ## Instructions for Evaluation
+Connect to VM in iTerm (VM needs to be running for this!)
+```
+ssh lzipp@127.0.0.1 -p 4242
+```
+Exit running session
+```
+exit
+```
 Always reboot after changes to sudo!
 ```
 sudo reboot
@@ -10,6 +18,17 @@ Always go into sudo mode first
 ```
 su -
 ```
+Show partitioning of disk
+```
+lsblk
+```
+### Logfiles
+Logfile directory & path to logfile
+```
+/var/log/sudo/
+/var/log/sudo/sudo.log
+```
+Read out content from logfile using cat
 ### Password Operations
 Password of all users except evaluator:
 ```
@@ -78,3 +97,15 @@ Check to which groups user belongs to
 groups username
 ```
 ### Group Operations
+Create a group
+```
+sudo groupadd groupname
+```
+Delete a group
+```
+groupdel groupname
+```
+Check if operation worked
+```
+getent group
+```
