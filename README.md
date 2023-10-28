@@ -143,4 +143,5 @@ $'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")"
 $'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
 ```
 Explanation:
-- wall (write all) is used by system administrators to send important messages to all users who are currently logged into the system.
+- wall (write all): is used by system administrators to send important messages to all users who are currently logged into the system.
+- grep [options] pattern [file...]: searches for a certain pattern 
