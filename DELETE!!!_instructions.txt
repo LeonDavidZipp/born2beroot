@@ -18,6 +18,15 @@ set password policy:
 	->PASS_MAX_DAYS 30
 	->PASS_MIN_DAYS 2
 	->PASS_WARN_AGE 7
+
+change password of current user:
+	passwd !then press enter!
+change pw of any user:
+	!be in su - mode!
+	passwd username
+ask a user to change their pw:
+
+
 ---------------------------------------------
 
 show ssh is there:
@@ -67,6 +76,11 @@ check which groups user belongs to:
 	groups username
 check which password rules do apply for user:
 	chage -l username
+
+apply security changes to all uers:
+	for user in $(cut -d: -f1 /etc/passwd); do
+    	sudo chage -M 30 -m 2 -W 7 $user
+	done
 ---------------------------------------------
 
 check hostname:
@@ -84,5 +98,5 @@ reboot after changes are implemented:
 
 ---------------------------------------------
 
-creating a monitorin.sh script
+creating a monitoring.sh script
  ->open in bash using cat> monitoring.sh
