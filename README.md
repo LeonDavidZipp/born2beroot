@@ -5,17 +5,17 @@ born2beroot project of the 42 core curriculum.
 ### User Operations
 #### Creation and Deletion
 Add new user:
-'''
+```
 sudo adduser username
-'''
+```
 Delete user:
-'''
+```
 sudo userdel username
-'''
+```
 Check if succesful (simply displays all existing users)
-'''
+```
 cut -d: -f1 /etc/passwd
-'''
+```
 #### Users in Groups
 Add user to group
 '''
