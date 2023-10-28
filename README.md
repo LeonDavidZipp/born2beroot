@@ -58,6 +58,10 @@ for user in $(cut -d: -f1 /etc/passwd); do
     	sudo chage -M 30 -m 2 -W 7 $user
 	done
 ```
+Check which password rules apply to a certain user
+```
+chage -l username
+```
 ### Host Operations
 Check hostname
 ```
@@ -71,7 +75,7 @@ then also change the hostfile
 ```
 sudo nano /etc/hosts
 127.0.0.1       localhost
-		-->127.0.0.1       new_hostname<--
+127.0.0.1       new_hostname	<--this!
 ```
 ### User Operations
 #### Creation and Deletion
@@ -113,3 +117,27 @@ Check if operation worked
 ```
 getent group
 ```
+### Firewall UFW
+### monitoring.sh
+Displays the given contents every 10 minutes. \n Create the file
+```
+cat> monitoring.sh
+```
+Write this inside
+```
+#!/bin/bash
+wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \
+$'\n#CPU Physical: '`cat /proc/cpuinfo | grep processor | wc -l` \
+$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \
+$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \
+$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \
+$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \
+$'\n#Last Boot: ' `who -b | awk '{print $3" "$4" "$5}'` \
+$'\n#LVM Use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \
+$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \
+$'\n#User Log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \
+$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \
+$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+```
+Explanation:
+* wall (write all) is used by system administrators to send important messages to all users who are currently logged into the system.
