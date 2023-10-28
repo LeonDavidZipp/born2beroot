@@ -2,6 +2,14 @@
 born2beroot project of the 42 core curriculum.
 
 ## Instructions for Evaluation
+Always reboot after changes to sudo!
+```
+sudo reboot
+```
+Always go into sudo mode first
+```
+su -
+```
 ### Password Operations
 Password of all users except evaluator:
 ```
@@ -21,6 +29,27 @@ Change password of any user (be in su - mode!)
 passwd username
 ```
 , then press enter.
+Apply password policy to all users:
+```
+for user in $(cut -d: -f1 /etc/passwd); do
+    	sudo chage -M 30 -m 2 -W 7 $user
+	done
+```
+### Host Operations
+Check hostname
+```
+hostnamectl
+```
+Change hostname
+```
+hostnamectl set-hostname new_hostname
+```
+then also change the hostfile
+```
+sudo nano /etc/hosts
+127.0.0.1       localhost
+		-->127.0.0.1       new_hostname<--
+```
 ### User Operations
 #### Creation and Deletion
 Add new user:
@@ -48,3 +77,4 @@ Check to which groups user belongs to
 ```
 groups username
 ```
+### Group Operations
