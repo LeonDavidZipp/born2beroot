@@ -35,6 +35,11 @@ location of .vdi file
 /goinfre/lzipp/vms/Debian/
 ```
 ### sudo configuration
+Value of sudo
+- increased security
+- accountability (sudo logs everything being done)
+- no need for having to log in as root user prevents misconfiguration potential
+
 installing sudo
 ```
 apt-get update -y
