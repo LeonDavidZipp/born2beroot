@@ -53,6 +53,19 @@ change paths sudo can work on
 ```
 
 ```
+#### configuring sudoers group
+go to `sudo nano /etc/sudoers` \
+Add this
+```
+Defaults     mail_badpass
+Defaults     passwd_tries=3
+Defaults     badpass_message="lzipp says: Wrong password, remember you only hav>
+Defaults     logfile="/var/log/sudo/sudo.log"
+Defaults     iolog_dir=/var/log/sudo
+Defaults     log_input,log_output
+Defaults     requiretty
+Defaults     secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sb>
+```
 ### ssh configuration
 install ssh
 ```
