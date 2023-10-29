@@ -38,6 +38,21 @@ then add user to sudo group
 ```
 usermod -aG sudo username
 ```
+verify oepration worked
+```
+getent group sudo
+```
+### ssh configuration
+install ssh
+```
+sudo apt-get update
+sudo apt install openssh-server
+```
+get ssh status
+```
+sudo systemctl status ssh
+```
+
 ### Logfiles
 Logfile directory & path to logfile
 ```
@@ -50,9 +65,10 @@ Password of all users except evaluator:
 ```
 Passwort12
 ```
-During eval change to 
+During eval change to ... or the one below if dictionary tester still active
 ```
 Passwort42
+Pasw42,.420
 ```
 Password of evaluator
 ```
