@@ -38,9 +38,13 @@ then add user to sudo group
 ```
 usermod -aG sudo username
 ```
-verify oepration worked
+verify operation worked
 ```
 getent group sudo
+```
+change paths sudo can work on
+```
+
 ```
 ### ssh configuration
 install ssh
@@ -52,7 +56,15 @@ get ssh status
 ```
 sudo systemctl status ssh
 ```
-
+In `sudo nano /etc/ssh/sshd_config`, change `#Port 22` to `to Port 4242`. Don't forget to change this in Virtual Box as well! \
+Check if port settings are correct
+```
+sudo grep Port /etc/ssh/sshd_config
+```
+restart ssh
+```
+service ssh restart
+```
 ### Logfiles
 Logfile directory & path to logfile
 ```
