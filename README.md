@@ -22,6 +22,10 @@ Show partitioning of disk
 ```
 lsblk
 ```
+Verify sudo installation & ...
+```
+# dpkg -l | grep sudo
+```
 ### Logfiles
 Logfile directory & path to logfile
 ```
