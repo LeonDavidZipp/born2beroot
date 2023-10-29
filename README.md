@@ -22,12 +22,13 @@ Show partitioning of disk
 ```
 lsblk
 ```
-Verify sudo & ssh installation $ ufw
+Verify sudo & ssh installation & ufw & operating system
 ```
 dpkg -l | grep sudo
 dpkg -l | grep ssh
 sudo systemctl status ufw
 sudo service ssh status
+uname -a
 ```
 location of .vdi file
 ```
@@ -95,6 +96,12 @@ sudo nano /etc/login.defs
 PASS_MAX_DAYS 30
 PASS_MIN_DAYS 2
 PASS_WARN_AGE 7
+```
+Apply password policy to all users:
+```
+for user in $(cut -d: -f1 /etc/passwd); do
+    	sudo chage -M 30 -m 2 -W 7 $user
+	done
 ```
 #### Settings before and after
 Password of all users except evaluator:
@@ -207,7 +214,7 @@ sudo ufw delete number_of_rule
 Displays the given contents every 10 minutes. \
 Create the file
 ```
-cat> monitoring.sh
+cat> /usr/local/bin/monitoring.sh
 ```
 Write this inside
 ```
