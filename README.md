@@ -49,10 +49,6 @@ verify operation worked
 ```
 getent group sudo
 ```
-change paths sudo can work on
-```
-
-```
 #### configuring sudoers group
 go to `sudo nano /etc/sudoers` \
 Add this
@@ -76,7 +72,7 @@ get ssh status
 ```
 sudo systemctl status ssh
 ```
-In `sudo nano /etc/ssh/sshd_config`, change `#Port 22` to `to Port 4242`. Don't forget to change this in Virtual Box as well! \ Also write `PermitRootLogin no` as well!
+In `sudo nano /etc/ssh/sshd_config`, change `#Port 22` to `to Port 4242`. Don't forget to change this in Virtual Box as well!
 ```
 PermitRootLogin no
 ```
