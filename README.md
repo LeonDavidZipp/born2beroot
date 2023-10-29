@@ -249,3 +249,5 @@ $'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
 - **wall (write all):** is used by system administrators (root users) to send important messages to all users who are currently logged into the system.
 - **Cron:** Linux task manager that allows us to execute commands at a certain time. 
 - **grep [options] pattern [file...]:** searches for a certain pattern.
+### Definitions
+- **APPArmor:** 
