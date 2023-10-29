@@ -78,6 +78,20 @@ Logfile directory & path to logfile
 ```
 Read out content from logfile using cat
 ### Password Operations
+#### Changing Password Policy
+Set policies here
+```
+sudo nano /etc/pam.d/common-password
+password [success=2 default=ignore] pam_unix.so obscure sha512 minlen=10
+password    requisite         pam_pwquality.so retry=3 lcredit =-1 ucredit=-1 dcredit=-1 maxrepeat=3 usercheck=0 difok=7 enforce_for_root
+```
+Set expiration here, then reboot using `sudo reboot`
+```
+sudo nano /etc/login.defs
+PASS_MAX_DAYS 30
+PASS_MIN_DAYS 2
+PASS_WARN_AGE 7
+```
 Password of all users except evaluator:
 ```
 Passwort12
