@@ -43,7 +43,7 @@ apt install sudo
 ```
 then add user to sudo group
 ```
-usermod -aG sudo username
+usermod -aG groupname username
 ```
 verify operation worked
 ```
