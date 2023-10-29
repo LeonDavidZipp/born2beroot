@@ -193,7 +193,7 @@ cat> monitoring.sh
 Write this inside
 ```
 #!/bin/bash
-wall $'#Architecture: ' `hostnamectl | grep "Operating System" | cut -d ' ' -f5- ` `awk -F':' '/^model name/ {print $2}' /proc/cpuinfo | uniq | sed -e 's/^[ \t]*//'` `arch` \
+wall $'#Architecture: ' `uname -a` \
 $'\n#CPU Physical: '`cat /proc/cpuinfo | grep processor | wc -l` \
 $'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \
 $'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \
