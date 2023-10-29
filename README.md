@@ -22,10 +22,11 @@ Show partitioning of disk
 ```
 lsblk
 ```
-Verify sudo & ssh installation
+Verify sudo & ssh installation $ ufw
 ```
 dpkg -l | grep sudo
 dpkg -l | grep ssh
+sudo systemctl status ufw
 ```
 location of .vdi file
 ```
