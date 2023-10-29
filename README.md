@@ -27,6 +27,7 @@ Verify sudo & ssh installation $ ufw
 dpkg -l | grep sudo
 dpkg -l | grep ssh
 sudo systemctl status ufw
+sudo service ssh status
 ```
 location of .vdi file
 ```
@@ -62,6 +63,9 @@ get ssh status
 sudo systemctl status ssh
 ```
 In `sudo nano /etc/ssh/sshd_config`, change `#Port 22` to `to Port 4242`. Don't forget to change this in Virtual Box as well! \ Also write `PermitRootLogin no` as well!
+```
+PermitRootLogin no
+```
 Check if port settings are correct
 ```
 sudo grep Port /etc/ssh/sshd_config
@@ -92,6 +96,7 @@ PASS_MAX_DAYS 30
 PASS_MIN_DAYS 2
 PASS_WARN_AGE 7
 ```
+#### Settings before and after
 Password of all users except evaluator:
 ```
 Passwort12
