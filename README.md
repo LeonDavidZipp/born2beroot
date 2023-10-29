@@ -246,6 +246,14 @@ $'\n#User Log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \
 $'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \
 $'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
 ```
+setup cron rule
+```
+sudo crontab -u root -e
+```
+put this inside
+```
+*/10 * * * * /usr/local/bin/monitoring.sh
+```
 #### Explanation:
 - **wall (write all):** is used by system administrators (root users) to send important messages to all users who are currently logged into the system.
 - **Cron:** Linux task manager that allows us to execute commands at a certain time. 
