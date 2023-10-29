@@ -27,6 +27,10 @@ Verify sudo & ssh installation
 dpkg -l | grep sudo
 dpkg -l | grep ssh
 ```
+location of .vdi file
+```
+/goinfre/lzipp/vms/Debian/Snapshots/{635488b1-0a99-4e3e-9e3a-39dc1ed3503d}.vdi
+```
 ### sudo configuration
 installing sudo
 ```
