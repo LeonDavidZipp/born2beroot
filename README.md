@@ -27,6 +27,17 @@ Verify sudo & ssh installation
 dpkg -l | grep sudo
 dpkg -l | grep ssh
 ```
+### sudo configuration
+installing sudo
+```
+apt-get update -y
+apt-get upgrade -y
+apt install sudo
+```
+then add user to sudo group
+```
+usermod -aG sudo username
+```
 ### Logfiles
 Logfile directory & path to logfile
 ```
