@@ -164,6 +164,21 @@ Check if operation worked
 getent group
 ```
 ### Firewall UFW
+downloading ufw
+```
+apt-get install ufw
+```
+configuring ufw
+```
+sudo ufw enable
+sudo ufw allow ssh
+sudo ufw allow 4242
+```
+changing rules
+```
+sudo ufw status numbered
+sudo ufw delete number_of_rule
+```
 ### monitoring.sh
 Displays the given contents every 10 minutes. \
 Create the file
