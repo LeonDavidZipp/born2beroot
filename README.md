@@ -142,6 +142,7 @@ $'\n#User Log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \
 $'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \
 $'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
 ```
-Explanation:
-- wall (write all): is used by system administrators to send important messages to all users who are currently logged into the system.
-- grep [options] pattern [file...]: searches for a certain pattern 
+#### Explanation:
+- **wall (write all):** is used by system administrators (root users) to send important messages to all users who are currently logged into the system.
+- **Cron:** Linux task manager that allows us to execute commands at a certain time. 
+- **grep [options] pattern [file...]:** searches for a certain pattern.
