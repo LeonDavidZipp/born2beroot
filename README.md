@@ -258,5 +258,10 @@ put this inside
 - **wall (write all):** is used by system administrators (root users) to send important messages to all users who are currently logged into the system.
 - **Cron:** Linux task manager that allows us to execute commands at a certain time. 
 - **grep [options] pattern [file...]:** searches for a certain pattern.
+### Retrieve key
+```
+cd /goinfre/lzipp/vms/Debian
+shasum Debian.vdi
+```
 ### Definitions
 - **APPArmor:** 
