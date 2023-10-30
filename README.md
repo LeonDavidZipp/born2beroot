@@ -34,7 +34,7 @@ location of .vdi file
 ```
 /goinfre/lzipp/vms/Debian/
 ```
-### sudo configuration
+## sudo configuration
 Value of sudo
 - increased security
 - accountability (sudo logs everything being done)
@@ -54,7 +54,7 @@ verify operation worked
 ```
 getent group sudo
 ```
-#### configuring sudoers group
+### configuring sudoers group
 go to `sudo nano /etc/sudoers` \
 Add this
 ```
@@ -67,7 +67,12 @@ Defaults     log_input,log_output
 Defaults     requiretty
 Defaults     secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sb>
 ```
-### ssh configuration
+## ssh configuration
+SSH
+- Secure Shell
+- provides secure encrypted communication
+- mostly used for remote access, e.g. for communicating with a server and safe data transfer \
+
 install ssh
 ```
 sudo apt-get update
@@ -89,15 +94,15 @@ restart ssh
 ```
 service ssh restart
 ```
-### Logfiles
+## Logfiles
 Logfile directory & path to logfile
 ```
 /var/log/sudo/
 /var/log/sudo/sudo.log
 ```
 Read out content from logfile using cat
-### Password Operations
-#### Changing Password Policy
+## Password Operations
+### Changing Password Policy
 Set policies here
 ```
 sudo nano /etc/pam.d/common-password
@@ -117,7 +122,7 @@ for user in $(cut -d: -f1 /etc/passwd); do
     	sudo chage -M 30 -m 2 -W 7 $user
 	done
 ```
-#### Settings before and after
+### Settings before and after
 Password of all users except evaluator:
 ```
 Passwort12
@@ -152,7 +157,7 @@ Check which password rules apply to a certain user
 ```
 chage -l username
 ```
-### Host Operations
+## Host Operations
 Check hostname
 ```
 hostnamectl
@@ -167,8 +172,8 @@ sudo nano /etc/hosts
 127.0.0.1       localhost
 127.0.0.1       new_hostname	<--this!
 ```
-### User Operations
-#### Creation and Deletion
+## User Operations
+### Creation and Deletion
 Add new user:
 ```
 sudo adduser username
@@ -182,7 +187,7 @@ Check if succesful \
 ```
 cut -d: -f1 /etc/passwd
 ```
-#### Users in Groups
+### Users in Groups
 Add user to group
 ```
 sudo usermod -aG groupname username
@@ -195,7 +200,7 @@ Check to which groups user belongs to
 ```
 groups username
 ```
-### Group Operations
+## Group Operations
 Create a group
 ```
 sudo groupadd groupname
@@ -208,7 +213,7 @@ Check if operation worked
 ```
 getent group
 ```
-### Firewall UFW
+## Firewall UFW
 downloading ufw
 ```
 apt-get install ufw
@@ -224,7 +229,7 @@ changing rules
 sudo ufw status numbered
 sudo ufw delete number_of_rule
 ```
-### monitoring.sh
+## monitoring.sh
 Displays the given contents every 10 minutes. \
 Create the file
 ```
@@ -254,16 +259,16 @@ put this inside
 ```
 */10 * * * * /usr/local/bin/monitoring.sh
 ```
-#### Explanation:
+### Explanation:
 - **wall (write all):** is used by system administrators (root users) to send important messages to all users who are currently logged into the system.
 - **Cron:** Linux task manager that allows us to execute commands at a certain time. 
 - **grep [options] pattern [file...]:** searches for a certain pattern.
-### Retrieve key
+## Retrieve key
 ```
 cd /goinfre/lzipp/vms/Debian
 shasum Debian.vdi
 ```
-### Definitions
+## Definitions
 **APPArmor:** 
 - used to protect systemcritical applications on Linux operating Systems which could compromise the system would they receive compromised data
 - is a mandatory access control system, meaning it imposes stricter rules by implementing passwords, keys, etc instead of only checking for name, identity, etc
@@ -271,3 +276,8 @@ shasum Debian.vdi
 **UFW**
 - not a firewall itself, only simplifies configuring preexisting firewall
 - makes it easy to (dis)allow ports
+**Virtual Machine**
+- computer on a computer also running an operating system
+- uses software instead of hardware to simulate a real computer
+- enable safe testing of applications or accessing dangerous data, since they are separate from the real computer
+- allow for multiple different operating systems on the same computer
