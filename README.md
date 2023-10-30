@@ -249,7 +249,7 @@ $'\n#LVM Use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print
 $'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \
 $'\n#User Log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \
 $'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \
-$'\n#Sudo:  ' `grep 'sudo ' /var/log/auth.log | wc -l`
+$'\n#Sudo:  ' (journalctl _COMM=sudo | grep COMMAND | wc -l)`
 ```
 setup cron rule
 ```
