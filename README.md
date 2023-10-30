@@ -238,18 +238,36 @@ cat> /usr/local/bin/monitoring.sh
 Write this inside
 ```
 #!/bin/bash
-wall $'#Architecture: ' `uname -a` \
-$'\n#CPU Physical: '`cat /proc/cpuinfo | grep processor | wc -l` \
-$'\n#vCPU:  '`cat /proc/cpuinfo | grep processor | wc -l` \
-$'\n'`free -m | awk 'NR==2{printf "#Memory Usage: %s/%sMB (%.2f%%)", $3,$2,$3*100/$2 }'` \
-$'\n'`df -h | awk '$NF=="/"{printf "#Disk Usage: %d/%dGB (%s)", $3,$2,$5}'` \
-$'\n'`top -bn1 | grep load | awk '{printf "#CPU Load: %.2f\n", $(NF-2)}'` \
-$'\n#Last Boot: ' `who -b | awk '{print $3" "$4" "$5}'` \
-$'\n#LVM Use: ' `lsblk |grep lvm | awk '{if ($1) {print "yes";exit;} else {print "no"} }'` \
-$'\n#Connection TCP:' `netstat -an | grep ESTABLISHED |  wc -l` \
-$'\n#User Log: ' `who | cut -d " " -f 1 | sort -u | wc -l` \
-$'\nNetwork: IP ' `hostname -I`"("`ip a | grep link/ether | awk '{print $2}'`")" \
-$'\n#Sudo:  ' (journalctl _COMM=sudo | grep COMMAND | wc -l)`
+arc=$(uname -a)
+pcpu=$(grep "physical id" /proc/cpuinfo | sort | uniq | wc -l)
+vcpu=$(grep "^processor" /proc/cpuinfo | wc -l)
+fram=$(free -m | awk '$1 == "Mem:" {print $2}')
+uram=$(free -m | awk '$1 == "Mem:" {print $3}')
+pram=$(free | awk '$1 == "Mem:" {printf("%.2f"), $3/$2*100}')
+fdisk=$(df -Bg | grep '^/dev/' | grep -v '/boot$' | awk '{ft += $2} END {print ft}')
+udisk=$(df -Bm | grep '^/dev/' | grep -v '/boot$' | awk '{ut += $3} END {print ut}')
+pdisk=$(df -Bm | grep '^/dev/' | grep -v '/boot$' | awk '{ut += $3} {ft+= $2} END {printf("%d"), ut/ft*100}')
+cpul=$(top -bn1 | grep '^%Cpu' | cut -c 9- | xargs | awk '{printf("%.1f%%"), $1 + $3}')
+lb=$(who -b | awk '$1 == "system" {print $3 " " $4}')
+lvmt=$(lsblk | grep "lvm" | wc -l)
+lvmu=$(if [ $lvmt -eq 0 ]; then echo no; else echo yes; fi)
+ctcp=$(cat /proc/net/sockstat{,6} | awk '$1 == "TCP:" {print $3}')
+ulog=$(users | wc -w)
+ip=$(hostname -I)
+mac=$(ip link show | awk '$1 == "link/ether" {print $2}')
+cmds=$(journalctl _COMM=sudo | grep COMMAND | wc -l)
+wall "  #Architecture: $arc
+        #CPU physical: $pcpu
+        #vCPU: $vcpu
+        #Memory Usage: $uram/${fram}MB ($pram%)
+        #Disk Usage: $udisk/${fdisk}Gb ($pdisk%)
+        #CPU load: $cpul
+        #Last boot: $lb
+        #LVM use: $lvmu
+        #Connexions TCP: $ctcp ESTABLISHED
+        #User log: $ulog
+        #Network: IP $ip ($mac)
+        #Sudo: $cmds cmd"
 ```
 setup cron rule
 ```
@@ -260,8 +278,19 @@ put this inside
 */10 * * * * /usr/local/bin/monitoring.sh
 ```
 ### Explanation:
+- **awk:** text-processing tool commonly used in Unix and Unix-like operating systems to process and manipulate text data, such as parsing and extracting specific fields from lines of text. It operates on a line-by-line basis, reading input text, applying rules or patterns to each line, and performing actions based on those rules
+- **uname -a:** Retrieves system information
+- **sort:** Sorts the output to prepare for unique counting.
+- **uniq:** Filters out duplicate lines.
+- **wc -l:** Counts the number of unique lines.
+- **free -m:** Displays system memory information in megabytes.
+- **df -Bm:** Displays disk space usage in megabytes
+- **df -Bg:** Displays disk space usage in gigabytes.
+- **top -bn1:** Runs the top command once.
+- **cut -c 9-:** Removes the initial characters
+- **xargs:** Converts the CPU load percentages into a single line
 - **wall (write all):** is used by system administrators (root users) to send important messages to all users who are currently logged into the system.
-- **Cron:** Linux task manager that allows us to execute commands at a certain time. 
+- **cron:** Linux task manager that allows us to execute commands at a certain time. 
 - **grep [options] pattern [file...]:** searches for a certain pattern.
 ## Retrieve key
 ```
