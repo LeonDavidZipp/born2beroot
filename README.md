@@ -264,4 +264,10 @@ cd /goinfre/lzipp/vms/Debian
 shasum Debian.vdi
 ```
 ### Definitions
-- **APPArmor:** 
+**APPArmor:** 
+- used to protect systemcritical applications on Linux operating Systems which could compromise the system would they receive compromised data
+- is a mandatory access control system, meaning it imposes stricter rules by implementing passwords, keys, etc instead of only checking for name, identity, etc
+- apps can have passwords e.g.
+**UFW**
+- not a firewall itself, only simplifies configuring preexisting firewall
+- makes it easy to (dis)allow ports
