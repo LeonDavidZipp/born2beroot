@@ -298,7 +298,7 @@ cd /goinfre/lzipp/vms/Debian
 shasum Debian.vdi
 ```
 ## Definitions
-**apt vs aptitude** \
+**apt vs aptitude**
 - both help installing programs without having to worry about installing the correct dependencies
 - apt is a simple command-line package manager for Debian-based systems
 - aptitude is a more advanced package manager with a text-based interactive interface and better dependency resolution
@@ -312,12 +312,12 @@ shasum Debian.vdi
 - not a firewall itself, only simplifies configuring preexisting firewall
 - makes it easy to (dis)allow ports
 
-**Virtual Machine** \
+**Virtual Machine**
 - computer on a computer also running an operating system
 - uses software instead of hardware to simulate a real computer
 - enable safe testing of applications or accessing dangerous data, since they are separate from the real computer
 - allow for multiple different operating systems on the same computer
 
-**Rocky vs Debian** \
+**Rocky vs Debian**
 - Debian is easier to use and install and is comunity driven
 - Rocky was developed by the red hats
