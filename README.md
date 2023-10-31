@@ -321,8 +321,11 @@ shasum Debian.vdi
 **Rocky vs Debian**
 - Debian is easier to use and install and is comunity driven
 - Rocky was developed by the red hats
-- 
-VML
-abstraction layer between a storage device and a file system. We get many advantages from using LVM, but the main advantage is that we have much more flexibility when it comes to managing partitions. Suppose we create four partitions on our storage disk. If for any reason we need to expand the storage of the first three partitions, we will not be able to because there is no space available next to them. In case we want to extend the last partition, we will always have the limit imposed by the disk. In other words, we will not be able to manipulate partitions in a friendly way. Thanks to LVM, all these problems are solved.
-By using LVM, we can expand the storage of any partition (now known as a logical volume) whenever we want without worrying about the contiguous space available on each logical volume. We can do this with available storage located on different physical disks (which we cannot do with traditional partitions). We can also move different logical volumes between physical devices. Of course, services and processes will work the same way they always have.
+
+**LVM**
+- LVM is a system for managing data storage in a computer.
+- adds an abstraction layer above partitions for simplified management.
+- multiple hard drives can be combined into a single Logical Volume.
+- volume Groups can be created to group Logical Volumes with assigned names.
+- helps administrators logically organize and reference data.
 ![image](https://github.com/LeonDavidZipp/born2beroot/assets/117377515/5aa37023-7e1a-4a17-8013-51813f5955b0)
